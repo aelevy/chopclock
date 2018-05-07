@@ -30,10 +30,6 @@
 					url: "/about",
 					controller: 'aboutController',
 					templateUrl: 'src/js/subapps/about/template.html'
-				}).state("more", {
-					url: "/more",
-					controller: 'moreController',
-					templateUrl: 'src/js/subapps/more/template.html'
 				});
 			}
 		]);
