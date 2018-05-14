@@ -1,10 +1,61 @@
-<h2>
-	{{title  | makeUppercase}} <!-- Example of a filter -->
-</h2>
-
-
-
-<p>
-	This is a skeleton for my typical AngularJS web app. You can use it to quickly bootstrap your
-	angular projects.
-</p>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h2>C.H.O.P. CLOCK</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h1>Daily No Limit 10AM</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-3">
+            <h3>Prize Pool</h3>
+        </div>
+        <div class="col-lg-6">
+            <div id="start-time-and-auto-start-set">
+                <h2>Level Number Goes Here</h2>
+                <hr>
+                <timer interval="1000">{{hours}} : {{minutes}} : {{seconds}}</timer>
+            </div>
+        </div>
+        <div class="col-lg-3">
+            <h3>Entrants</h3>
+            <hr>
+            <span># of Entrants</span>
+            <h3>Players Left</h3>
+            <hr>
+            <span># of Players Left</span>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4">
+            <ul>
+                <li>Prize Pool:</li>
+                <li>ReEntries:</li>
+                <li>Rebuys:</li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul>
+                <li>Ante:</li>
+                <li>Small:</li>
+                <li>Big:</li>
+                <li>Limits:</li>
+                <li>Bring In:</li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul>
+                <li>Next Ante:</li>
+                <li>Next Small:</li>
+                <li>Next Big:</li>
+                <li>Next Limits:</li>
+                <li>Next Bring In:</li>
+                <li>Average Stack:</li>
+                <li>Next Break: minutes</li>
+            </ul>
+        </div>
+    </div>
+</div>

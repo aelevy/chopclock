@@ -5,7 +5,8 @@
     var ngPrototype =
         angular.module('ngSeedApp', [
             'ui.router',
-            'ngSeedApp.controllers'
+            'ngSeedApp.controllers',
+            'timer'
         ]);
 
     ngPrototype.run(['$rootScope', '$state', '$stateParams',
