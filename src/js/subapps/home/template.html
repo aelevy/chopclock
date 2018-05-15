@@ -4,37 +4,54 @@
             <h2>C.H.O.P. CLOCK</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row p-4">
         <div class="col-lg-6 offset-lg-3">
-            <h1>Daily No Limit 10AM</h1>
+            <h1>Tournament Setup</h1>
         </div>
     </div>
-    <div class="row">
-        <div class="col-lg-3">
+    <div class="row p-2">
+        <div class="col-lg-4">
             <h3>Prize Pool</h3>
-        </div>
-        <div class="col-lg-6">
-            <div id="start-time-and-auto-start-set">
-                <h2>Level Number Goes Here</h2>
-                <hr>
-                <timer interval="1000">{{hours}} : {{minutes}} : {{seconds}}</timer>
+            <div class="row prize-breakdown">
+                <div class="col-lg-6">
+                    <ul>
+                        <li>1st</li>
+                        <li>2nd</li>
+                        <li>3rd</li>
+                    </ul>
+                </div>
+                <div class="col-lg-6">
+                    <ul>
+                        <li><input type="number"></li>
+                        <li><input type="number"></li>
+                        <li><input type="number"></li>
+                    </ul>
+                </div>
             </div>
         </div>
-        <div class="col-lg-3">
+        <div class="col-lg-4">
+            <div id="start-time-and-auto-start-set">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
+                  Configure Levels
+                </button>
+                <timer countdown="5" interval="1000" finish-callback="roundEnd()">{{hours}} : {{minutes}} : {{seconds}}</timer>
+            </div>
+        </div>
+        <div class="col-lg-4">
             <h3>Entrants</h3>
             <hr>
-            <span># of Entrants</span>
+            <input type="number">
             <h3>Players Left</h3>
             <hr>
-            <span># of Players Left</span>
+            <input type="number">
         </div>
     </div>
-    <div class="row row3">
+    <div class="row row3 p-2">
         <div class="col-lg-4">
             <ul>
-                <li>Prize Pool:</li>
-                <li>ReEntries:</li>
-                <li>Rebuys:</li>
+                <li>Prize Pool:<input type="number"></li>
+                <li>ReEntries:<input type="number"></li>
+                <li>Rebuys:<input type="number"></li>
             </ul>
         </div>
         <div class="col-lg-4">
@@ -58,4 +75,22 @@
             </ul>
         </div>
     </div>
+</div>
+
+
+
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ...
+      </div>
+    </div>
+  </div>
 </div>

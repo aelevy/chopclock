@@ -6,10 +6,30 @@ body {
     text-align: center;
 }
 
+.prize-breakdown {
+    text-align: left;
+}
+
+.prize-breakdown ul {
+    list-style-type: none;
+}
+
+.prize-breakdown ul li {
+    padding-bottom: 10px;
+}
+
+.prize-breakdown ul li input {
+    width: 100%;
+}
+
 .row3 {
     text-align: left;
 }
 
 .row3 li {
     list-style-type: none;
+}
+
+.row3 ul li {
+    padding-bottom: 10px;
 }
