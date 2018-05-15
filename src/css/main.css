@@ -5,3 +5,11 @@ body {
 .container {
     text-align: center;
 }
+
+.row3 {
+    text-align: left;
+}
+
+.row3 li {
+    list-style-type: none;
+}
