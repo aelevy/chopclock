@@ -6,20 +6,29 @@ body {
     text-align: center;
 }
 
-.prize-breakdown {
-    text-align: left;
+.modal-dialog {
+    max-width: 800px;
 }
+
+hr {
+    border-top: 2px solid black;
+}
+
+.prize-breakdown {}
 
 .prize-breakdown ul {
     list-style-type: none;
+    width: 100%
 }
 
 .prize-breakdown ul li {
     padding-bottom: 10px;
+    padding-top: 10px;
 }
 
 .prize-breakdown ul li input {
-    width: 100%;
+    margin-left: 25px;
+    width: 25%;
 }
 
 .row3 {

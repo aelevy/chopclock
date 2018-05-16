@@ -24,7 +24,7 @@
 
                 $stateProvider.state('home', {
                     url: '/',
-                    controller: 'homeController',
+                    controller: 'tournamentController as tournament',
                     templateUrl: 'src/js/subapps/home/template.html'
                 });
             }
