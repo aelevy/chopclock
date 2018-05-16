@@ -1,1 +1,0 @@
-Angular Poker Tournament Clock

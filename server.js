@@ -8,7 +8,7 @@ app.get('/data',function(req,res){
 });
 
 app.get('*',function(req,res){
-  res.sendfile('src/index.html');
+  res.sendfile('index.html');
 });
 
 
