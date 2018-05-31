@@ -13,26 +13,47 @@
                   {},{},{},{},{},{},{},{},{},{}
                 ];
 
-                $scope.list = tournament.levels;
-                // $scope.sortingLog = [];
-                //
-                // $scope.sortableOptions = {
-                //   update: function(e, ui) {
-                //     var logEntry = tournament.levels.map(function(i){
-                //       return i.value;
-                //     }).join(', ');
-                //     $scope.sortingLog.push('Update: ' + logEntry);
-                //   },
-                //   stop: function(e, ui) {
-                //     // this callback has the changed model
-                //     var logEntry = tournament.levels.map(function(i){
-                //       return i.value;
-                //     }).join(', ');
-                //     $scope.sortingLog.push('Stop: ' + logEntry);
-                //   }
-                // };
+                tournament.setupLevels = function() {
+                  var levelNumber = 1;
+                  angular.forEach(tournament.levels, function(level){
+                    level.number = levelNumber;
+                    levelNumber++;
+                    level.type = 'round';
+                    if (level.number === 1) {
+                      tournament.currentLevel = level;
+                    }
+                    if (level.number === 2) {
+                      tournament.nextLevel = level;
+                    }
+                  });
+                };
+                tournament.setupLevels();
+
+                tournament.addBreak = function() {
+                  tournament.levels.unshift({
+                    type:'break'
+                  });
+                };
+
+                $scope.startTimer = function (){
+                    $scope.$broadcast('timer-start');
+                    $scope.timerRunning = true;
+                };
+
+                $scope.stopTimer = function (){
+                    $scope.$broadcast('timer-stop');
+                    $scope.timerRunning = false;
+                };
+
                 tournament.roundEnd = function() {
-                    console.log('round overrr');
+                  tournament.currentLevel = angular.copy(tournament.nextLevel);
+                  angular.forEach(tournament.levels, function(level){
+                    console.log(tournament.nextLevel.round);
+                    if (tournament.nextLevel.round + 1 === level.round) {
+                      tournament.nextLevel = level;
+                      console.log(tournament.nextLevel);
+                    }
+                  });
                 };
             }
         ]);

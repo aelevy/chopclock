@@ -24,11 +24,13 @@
             </div>
         </div>
         <div class="col-lg-4">
-            <div id="start-time-and-auto-start-set">
+            <div id="">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                   Configure Levels
                 </button>
-                <timer countdown="5" interval="1000" finish-callback="tournament.roundEnd()">{{hours}} : {{minutes}} : {{seconds}}</timer>
+                <timer autostart="false" countdown="3" interval="1000" finish-callback="tournament.roundEnd()">{{minutes}} : {{seconds}}</timer>
+                <button ng-click="startTimer()">Start Timer</button>
+                <button ng-click="stopTimer()">Stop Timer</button>
             </div>
         </div>
         <div class="col-lg-4">
@@ -50,20 +52,20 @@
         </div>
         <div class="col-lg-4">
             <ul>
-                <li>Ante:</li>
-                <li>Small:</li>
-                <li>Big:</li>
-                <li>Limits:</li>
-                <li>Bring In:</li>
+                <li>Ante: {{tournament.currentLevel.ante}}</li>
+                <li>Small: {{tournament.currentLevel.small}}</li>
+                <li>Big: {{tournament.currentLevel.big}}</li>
+                <li>Limits: {{tournament.currentLevel.limits}}</li>
+                <li>Bring In: {{tournament.currentLevel.bringIn}}</li>
             </ul>
         </div>
         <div class="col-lg-4">
             <ul>
-                <li>Next Ante:</li>
-                <li>Next Small:</li>
-                <li>Next Big:</li>
-                <li>Next Limits:</li>
-                <li>Next Bring In:</li>
+                <li>Next Ante: {{tournament.nextLevel.ante}}</li>
+                <li>Next Small: {{tournament.nextLevel.small}}</li>
+                <li>Next Big: {{tournament.nextLevel.big}}</li>
+                <li>Next Limits: {{tournament.nextLevel.limits}}</li>
+                <li>Next Bring In: {{tournament.nextLevel.bringIn}}</li>
                 <li>Average Stack:</li>
                 <li>Next Break: minutes</li>
             </ul>
@@ -78,6 +80,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h5 class="modal-title" id="exampleModalLabel">Configure Levels</h5>
+        <button type="button" ng-click="tournament.addBreak()">Add Break</button>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -85,25 +88,37 @@
       <div class="modal-body">
         <div>
           <ul ui-sortable ng-model="tournament.levels" class="list">
-            <li ng-repeat="level in tournament.levels track by $index" class="row item">
-              <div class="col-lg-2">
-                Level {{$index + 1}}
+            <li ng-repeat="level in tournament.levels track by $index" class="item">
+              <div ng-if="level.type == 'round'" class="row">
+                <div class="col-lg-1">
+                  Level {{level.number}}
+                </div>
+                <div class="col-lg-1">
+                  Timer <input type="number" name="" ng-model="level.timer" value="">
+                </div>
+                <div class="col-lg-2">
+                  Ante <input type="number" name="" ng-model="level.ante" value="">
+                </div>
+                <div class="col-lg-2">
+                  Small <input type="number" name="" ng-model="level.small" value="">
+                </div>
+                <div class="col-lg-2">
+                  Big <input type="number" name="" ng-model="level.big" value="">
+                </div>
+                <div class="col-lg-2">
+                  Limits <input type="number" name="" ng-model="level.limits" value="">
+                </div>
+                <div class="col-lg-2">
+                  Bring in <input type="number" name="" ng-model="level.bringIn" value="">
+                </div>
               </div>
-              <div class="col-lg-2">
-                Ante <input type="number" name="" ng-model="level.ante" value="">
+
+              <div ng-if="level.type == 'break'">
+                <div class="col-lg-4">
+                  Break <input type="number" name="" ng-model="level.timer" value="">
+                </div>
               </div>
-              <div class="col-lg-2">
-                Small <input type="number" name="" ng-model="level.small" value="">
-              </div>
-              <div class="col-lg-2">
-                Big <input type="number" name="" ng-model="level.big" value="">
-              </div>
-              <div class="col-lg-2">
-                Limits <input type="number" name="" ng-model="level.limits" value="">
-              </div>
-              <div class="col-lg-2">
-                Bring in <input type="number" name="" ng-model="level.bringIn" value="">
-              </div>
+
             </li>
           </ul>
       </div>
