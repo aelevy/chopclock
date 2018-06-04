@@ -1,4 +1,11 @@
 <div class="container">
+  <div class="nav">
+    <button type="button" name="button" ng-click="tournament.setup = true;">Settings</button>
+    <button type="button" name="button" ng-click="tournament.setup = false;">Not Settings</button>
+  </div>
+
+</div>
+<div class="container" ng-show="tournament.setup">
     <div class="row">
         <div class="col-lg-6 offset-lg-3">
             <h2>C.H.O.P. CLOCK</h2>
@@ -28,9 +35,6 @@
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal">
                   Configure Levels
                 </button>
-                <timer autostart="false" countdown="3" interval="1000" finish-callback="tournament.roundEnd()">{{minutes}} : {{seconds}}</timer>
-                <button ng-click="startTimer()">Start Timer</button>
-                <button ng-click="stopTimer()">Stop Timer</button>
             </div>
         </div>
         <div class="col-lg-4">
@@ -48,6 +52,83 @@
                 <li>Prize Pool:<input ng-model="tournament.settings.prizePool" type="number"></li>
                 <li>ReEntries:<input ng-model="tournament.settings.reEntries" type="number"></li>
                 <li>Rebuys:<input ng-model="tournament.settings.rebuys" type="number"></li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul>
+                <li>Ante: {{tournament.currentLevel.ante}}</li>
+                <li>Small: {{tournament.currentLevel.small}}</li>
+                <li>Big: {{tournament.currentLevel.big}}</li>
+                <li>Limits: {{tournament.currentLevel.limits}}</li>
+                <li>Bring In: {{tournament.currentLevel.bringIn}}</li>
+            </ul>
+        </div>
+        <div class="col-lg-4">
+            <ul>
+                <li>Next Ante: {{tournament.nextLevel.ante}}</li>
+                <li>Next Small: {{tournament.nextLevel.small}}</li>
+                <li>Next Big: {{tournament.nextLevel.big}}</li>
+                <li>Next Limits: {{tournament.nextLevel.limits}}</li>
+                <li>Next Bring In: {{tournament.nextLevel.bringIn}}</li>
+                <li>Average Stack:</li>
+                <li>Next Break: minutes</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="container" ng-hide="tournament.setup">
+    <div class="row">
+        <div class="col-lg-6 offset-lg-3">
+            <h2>C.H.O.P. CLOCK</h2>
+        </div>
+    </div>
+    <div class="row p-4">
+        <div class="col-lg-6 offset-lg-3">
+            <h1>{{tournament.settings.name}}</h1>
+        </div>
+    </div>
+    <div class="row p-4">
+        <div class="col-lg-4">
+            <h3>Prize Pool</h3>
+            <div class="row prize-breakdown">
+                <button type="button" ng-click="tournament.prizePayouts.push(null)">Add place</button>
+                <ul ng-repeat="(key, value) in tournament.prizePayouts track by $index">
+                    <li ng-if="key + 1 == 1">{{key + 1}}st<span>{{tournament.prizePayouts[$index]}}</span></li>
+                    <li ng-if="key + 1 == 2">{{key + 1}}nd<span>{{tournament.prizePayouts[$index]}}</span></li>
+                    <li ng-if="key + 1 == 3">{{key + 1}}rd<span>{{tournament.prizePayouts[$index]}}</span></li>
+                    <li ng-if="key + 1 == 4 || key + 1 == 5 || key + 1 > 5 ">{{key + 1}}th<span>{{tournament.prizePayouts[$index]}}</span></li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="row">
+              <div class="col-lg-12">
+                <timer autostart="false" countdown="tournament.currentLevel.timer" interval="1000" finish-callback="tournament.roundEnd()">{{minutes}} : {{seconds}}</timer>
+              </div>
+              <div class="row">
+                <div class="col-lg-12">
+                  <button ng-click="startTimer()">Start Timer</button>
+                  <button ng-click="stopTimer()">Stop Timer</button>
+                </div>
+              </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <h3>Entrants</h3>
+            <hr>
+            <span>{{tournament.settings.entrants}}</span>
+            <h3>Players Left</h3>
+            <hr>
+            <span>{{tournament.settings.playersLeft}}</span>
+        </div>
+    </div>
+    <div class="row row3 p-2">
+        <div class="col-lg-4">
+            <ul>
+                <li>Prize Pool:<span>{{tournament.settings.prizePool}}</span></li>
+                <li>ReEntries:<span>{{tournament.settings.reEntries}}</span></li>
+                <li>Rebuys:<span>{{tournament.settings.rebuys}}</span></li>
             </ul>
         </div>
         <div class="col-lg-4">

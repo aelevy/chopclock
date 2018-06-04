@@ -29,11 +29,17 @@
                 };
                 tournament.setupLevels();
 
+                // $scope.$watch('tournament.currentLevel', function(newValue,oldValue) {
+                //     console.log(oldValue,newValue);
+                //     tournament.currentLevel = newValue;
+                // }, true);
+
                 tournament.addBreak = function() {
                   tournament.levels.unshift({
                     type:'break'
                   });
                 };
+
 
                 $scope.startTimer = function (){
                     $scope.$broadcast('timer-start');
@@ -46,14 +52,15 @@
                 };
 
                 tournament.roundEnd = function() {
-                  tournament.currentLevel = angular.copy(tournament.nextLevel);
+                  tournament.currentLevel = tournament.nextLevel;
                   angular.forEach(tournament.levels, function(level){
-                    console.log(tournament.nextLevel.round);
-                    if (tournament.nextLevel.round + 1 === level.round) {
-                      tournament.nextLevel = level;
-                      console.log(tournament.nextLevel);
+                    if (tournament.nextLevel.number + 1 === level.number) {
+                      tournament.newNextLevel = level;
                     }
                   });
+                  $scope.$broadcast('timer-reset');
+                  tournament.nextLevel = tournament.newNextLevel;
+                  $scope.$broadcast('timer-start');
                 };
             }
         ]);
